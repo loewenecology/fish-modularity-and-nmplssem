@@ -43,6 +43,18 @@ set.seed(8) #best performing seed of 1-10 (based on modularity Q value)
 dirt.lpa.b.plus.net <- computeModules(speciesbysite, method="Beckett", forceLPA=FALSE)
 dirt.lpa.b.plus.net@likelihood #Barbers modularity Q = 0.3324972 (4 modules)
 
+# Null model analysis
+
+func <- function(x) computeModules(x)@likelihood
+clus <- makeCluster(20) #set number of processors for parallel computing
+clusterEvalQ(clus, library(bipartite))
+nm <- replicate(20, simulate(vegan::nullmodel(speciesbysite, "curveball"), 5, thin=1000, burnin=1000), simplify = FALSE)
+nm <- smbind(nm, MARGIN = 3) #sets 100 simulations across 20 chains
+set.seed(8)
+dirt.lpa.b.plus.net.8.curveball.chains <- oecosimu(comm = nm, nestfun = func, alternative = "greater", statistic = "likelihood", parallel = clus)
+dirt.lpa.b.plus.net.8.curveball.chains[["oecosimu"]][["pval"]]
+stopCluster(clus)
+
 # Computes participation coefficient (c)  
 
 dirt.lpa.b.plus.net.cz.lower <- czvalues(dirt.lpa.b.plus.net, level="lower") #site-level calculation
@@ -100,6 +112,18 @@ speciesbysite.mod1 <- speciesbysite.mod1[(rownames(speciesbysite.mod1) %in% dirt
 set.seed(10) #best performing seed of 1-10 (based on modularity Q value)
 dirt.lpa.b.plus.net.mod1 <- computeModules(speciesbysite.mod1, method="Beckett", forceLPA=FALSE)
 dirt.lpa.b.plus.net.mod1@likelihood #Barbers modularity Q = 0.181355 (5 modules)
+
+# Null model analysis
+
+func <- function(x) computeModules(x)@likelihood
+clus <- makeCluster(20) #set number of processors for parallel computing
+clusterEvalQ(clus, library(bipartite))
+nm <- replicate(20, simulate(vegan::nullmodel(speciesbysite.mod1, "curveball"), 5, thin=1000, burnin=1000), simplify = FALSE)
+nm <- smbind(nm, MARGIN = 3) #sets 100 simulations across 20 chains
+set.seed(10)
+dirt.lpa.b.plus.net.mod1.curveball.chains <- oecosimu(comm = nm, nestfun = func, alternative = "greater", statistic = "likelihood", parallel = clus)
+dirt.lpa.b.plus.net.mod1.curveball.chains[["oecosimu"]][["pval"]]
+stopCluster(clus)
 
 # Computes participation coefficient (c)  
 
@@ -162,6 +186,18 @@ speciesbysite.mod2 <- speciesbysite.mod2[(rownames(speciesbysite.mod2) %in% dirt
 set.seed(10) #best performing seed of 1-10 (based on modularity Q value)
 dirt.lpa.b.plus.net.mod2 <- computeModules(speciesbysite.mod2, method="Beckett", forceLPA=FALSE)
 dirt.lpa.b.plus.net.mod2@likelihood #Barbers modularity Q = 0.3025909 (7 modules)
+
+# Null model analysis
+
+func <- function(x) computeModules(x)@likelihood
+clus <- makeCluster(20) #set number of processors for parallel computing
+clusterEvalQ(clus, library(bipartite))
+nm <- replicate(20, simulate(vegan::nullmodel(speciesbysite.mod2, "curveball"), 5, thin=1000, burnin=1000), simplify = FALSE)
+nm <- smbind(nm, MARGIN = 3) #sets 100 simulations across 20 chains
+set.seed(10)
+dirt.lpa.b.plus.net.mod2.curveball.chains <- oecosimu(comm = nm, nestfun = func, alternative = "greater", statistic = "likelihood", parallel = clus)
+dirt.lpa.b.plus.net.mod2.curveball.chains[["oecosimu"]][["pval"]]
+stopCluster(clus)
 
 # Computes participation coefficient (c)  
 
@@ -233,6 +269,18 @@ set.seed(4) #best performing seed of 1-10 (based on modularity Q value)
 dirt.lpa.b.plus.net.mod3 <- computeModules(speciesbysite.mod3, method="Beckett", forceLPA=FALSE)
 dirt.lpa.b.plus.net.mod3@likelihood #Barbers modularity Q = 0.2392342 (7 modules)
 
+# Null model analysis
+
+func <- function(x) computeModules(x)@likelihood
+clus <- makeCluster(20) #set number of processors for parallel computing
+clusterEvalQ(clus, library(bipartite))
+nm <- replicate(20, simulate(vegan::nullmodel(speciesbysite.mod3, "curveball"), 5, thin=1000, burnin=1000), simplify = FALSE)
+nm <- smbind(nm, MARGIN = 3) #sets 100 simulations across 20 chains
+set.seed(4)
+dirt.lpa.b.plus.net.mod3.curveball.chains <- oecosimu(comm = nm, nestfun = func, alternative = "greater", statistic = "likelihood", parallel = clus)
+dirt.lpa.b.plus.net.mod3.curveball.chains[["oecosimu"]][["pval"]]
+stopCluster(clus)
+
 # Computes participation coefficient (c)  
 
 dirt.lpa.b.plus.net.mod3.cz.lower <- czvalues(dirt.lpa.b.plus.net.mod3, level="lower") #site-level calculation
@@ -302,6 +350,18 @@ speciesbysite.mod4 <- speciesbysite.mod4[(rownames(speciesbysite.mod4) %in% dirt
 set.seed(9) #best performing seed of 1-10 (based on modularity Q value)
 dirt.lpa.b.plus.net.mod4 <- computeModules(speciesbysite.mod4, method="Beckett", forceLPA=FALSE)
 dirt.lpa.b.plus.net.mod4@likelihood #Barbers modularity Q = 0.1883207 (6 modules)
+
+# Null model analysis
+
+func <- function(x) computeModules(x)@likelihood
+clus <- makeCluster(20) #set number of processors for parallel computing
+clusterEvalQ(clus, library(bipartite))
+nm <- replicate(20, simulate(vegan::nullmodel(speciesbysite.mod4, "curveball"), 5, thin=1000, burnin=1000), simplify = FALSE)
+nm <- smbind(nm, MARGIN = 3) #sets 100 simulations across 20 chains
+set.seed(9)
+dirt.lpa.b.plus.net.mod4.curveball.chains <- oecosimu(comm = nm, nestfun = func, alternative = "greater", statistic = "likelihood", parallel = clus)
+dirt.lpa.b.plus.net.mod4.curveball.chains[["oecosimu"]][["pval"]]
+stopCluster(clus)
 
 # Computes participation coefficient (c)  
 
